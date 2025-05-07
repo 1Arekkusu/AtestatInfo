@@ -50,6 +50,14 @@ with open('assets/levels/level.tmj') as file:
 text_font = pg.font.SysFont("Consolas", 24, bold = True)
 large_font = pg.font.SysFont("Consolas", 36)
 
+def display_data():
+    pg.draw.rect(screen, "maroon", (c.SCREEN_WIDTH, 0,  c.SIDE_PANEL, c.SCREEN_HEIGHT))
+    pg.draw.rect(screen, "grey0", (c.SCREEN_WIDTH, 0,  c.SIDE_PANEL, 400), 2)
+
+    draw_text("Health: " + str(world.health), text_font, "black", 0, 0)
+    draw_text("Money: " + str(world.money), text_font, "black", 0, 30)
+    draw_text("Wave " + str(world.level), text_font, "black", 0, 60)
+
 #output text
 def draw_text(text, font, text_color, x, y):
     img = font.render(text, True, text_color)
@@ -141,9 +149,7 @@ while run:
     for turret in turret_group:
         turret.draw(screen)
 
-    draw_text(str(world.health), text_font, "grey100", 0, 0)
-    draw_text(str(world.money), text_font, "grey100", 0, 30)
-    draw_text(str(world.level), text_font, "grey100", 0, 60)
+    display_data()
 
     if game_over == False:
         #check level start
